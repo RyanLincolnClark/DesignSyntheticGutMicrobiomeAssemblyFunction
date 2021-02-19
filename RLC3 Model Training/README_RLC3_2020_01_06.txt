@@ -1,0 +1,17 @@
+In /RLC3_code/
+
+gLV Model:
+
+param_v10.jl contains functions used by the scripts below
+2019_08_20_LambdaScan_RLC3_diagonal.jl was used to fit the model to the pairs dataset (stored in 2019_08_19_rlc_data_mean.jld) and posterior data from RLC2 (stored in 2019_08_20_RLC2_posteriordata_diagonal.jld) using various values of lambda
+2019_08_20_InferenceAnalysis_RLC3_lambda100.jl was used to perform inference analysis using lambda=100 with output posterior_RLC3
+CovarianceMatrix_diagonal.m takes /posterior_RLC3/ as input and outputs:
+1. 2019_08_21_invcovmat_diagonal_RLC3.csv > inverse of the covariance matrix assuming the posterior distribution is diagonal
+2. 2019_08_21_priormeans_RLC3.csv > Mean of the posterior distribution for each parameter in the ensemble, used as the mean of the prior for subsequent parameterizations
+3. 2019_08_21_priorperturbations_diagonal_RLC3.csv > 5000 sets of prior means, each one with random noise applied via the covariance matrix
+2019_08_14_GeneratePosteriorData.jl takes the three outputs from CovarianceMatrix_diagonal.m and stores them in a julia data file called 2019_08_21_RLC3_posteriordata.jld to be used for training the RLC8 model
+
+Regression Model:
+
+MakeAllModels_SSandZERO.m uses the functions stored in GenerateModel.m, LassoRegression.m, and MakePrediction.m to generate models for every combination of butyrate producers using the data in /RLC3_trainingDFs/
+Model outputs are stored in /RLC3_output/RLC3_regressionmodels_10fcv_SSandZERO/

@@ -1,0 +1,11 @@
+function [prediction] = MakePrediction(data, parameters, presentvector)
+V1=repmat(presentvector,[size(data,1),1]);
+V1=V1(:,[21,16,18,23,22,15,17,10,19,14,1,2,24,20,4,5,6,9,3,7,8,25,11,13,12]);
+V2=data;
+V2=V2(:,[21,16,18,23,22,15,17,10,19,14,1,2,24,20,4,5,6,9,3,7,8,25,11,13,12]);
+V = reshape([V1;V2], size(data,1), []);
+D=x2fx(V,'interaction');
+D(:,1)=[]; %Remove constant term
+D(:,11:50)=[]; %Remove terms for monospecies of non-BPB
+D(:,[11,108,201,290,375,456,533,606,675,740,801,858,911,960,1005,1046,1083,1116,1145,1170,1191,1208,1221,1230,1235])=[];%Remove SSx*ZEROx combinations
+prediction=D*parameters;

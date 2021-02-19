@@ -1,0 +1,2 @@
+gLV_Simulation_fixedbpb_otherstats_2019_11_21.m was used to simulat every community that contained all 5 BPB
+The model parameters that were used are in 'RLC8 Model Training/RLC8_output/posterior_RLC8' and 'RLC8 Model Training/RLC8_output/RLC8_regressionmodels_10fcv_SSandZERO/ER-FP-AC-CC-RI'

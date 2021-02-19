@@ -1,0 +1,9 @@
+In /RLC2_code/
+param_v9.jl contains functions used by the scripts below
+2019_08_13_LambdaScan_RLC2.jl was used to fit the model to the monospecies dataset (stored in 2019_08_13_rlc_data_mean.jld) using various values of lambda
+2019_08_13_InferenceAnalysis_RLC2_lambda10.jl was used to perform inference analysis using lambda=10 with output posterior_RLC2
+CovarianceMatrix_diagonal.m takes /posterior_RLC2/ as input and outputs:
+1. 2019_08_20_invcovmat_diagonal_RLC2.csv > inverse of the covariance matrix assuming the posterior distribution is diagonal
+2. 2019_08_20_priormeans_RLC2.csv > Mean of the posterior distribution for each parameter in the ensemble, used as the mean of the prior for subsequent parameterizations
+3. 2019_08_20_priorperturbations_diagonal_RLC2.csv > 5000 sets of prior means, each one with random noise applied via the covariance matrix
+2019_08_14_GeneratePosteriorData.jl takes the three outputs from CovarianceMatrix_diagonal.m and stores them in a julia data file called 2019_08_20_RLC2_posteriordata.jld to be used for training the RLC3 model

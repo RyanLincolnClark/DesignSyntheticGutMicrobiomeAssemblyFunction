@@ -1,0 +1,14 @@
+# Matlab build file
+
+universe = vanilla
+log = interactive.log
+
+# List all of your .m files, or a tar.gz file if you've combined them.
+transfer_input_files = inferenceanalysis_RLC_v2.m, gLV_RLC.m, LOAD_DATA_PERTURB_RLC.m, objectiveFunction_L2_monoweight_RLC_v2.m
++IsBuildJob = true
+requirements = (OpSysMajorVer =?= 7)
+request_cpus = 1
+request_memory = 2GB
+request_disk = 2GB
+
+queue
